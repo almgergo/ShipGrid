@@ -1,0 +1,17 @@
+{
+	"selectedShip": 0,
+	"shipTypes": [
+		{
+			"shipType": 0,
+			"rows": 6,
+			"columns": 5,
+			"health": 100
+		},
+		{
+			"shipType": 1,
+			"rows": 4,
+			"columns": 2,
+			"health": 75
+		}
+	]
+}
