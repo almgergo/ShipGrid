@@ -32,19 +32,20 @@ public class ShipGridManager : MonoBehaviour {
         }
 
         this.FindNeighbours();
-        // foreach (BuildableNode n in nodes) {
-        //     foreach (GameObject neighbour in n.GetNeighbours()) {
-        //         Vector3 direction = neighbour.transform.position - n.transform.position;
+        foreach (BuildableNode n in nodes) {
+            n.ChangeColor();
+            // foreach (GameObject neighbour in n.GetNeighbours()) {
+            //     Vector3 direction = neighbour.transform.position - n.transform.position;
 
-        //         Debug.DrawRay(n.gameObject.transform.position,
-        //             direction,
-        //             Color.blue, 40);
-        //     }
-        // }
+            //     Debug.DrawRay(n.gameObject.transform.position,
+            //         direction,
+            //         Color.blue, 40);
+            // }
+        }
     }
 
     private void InitBuildableNode(int i, int j, GameObject newBuildable) {
-        BuildableNode bn = newBuildable.GetComponent<BuildableNode>();
+        BuildableNode bn = newBuildable.GetComponentInChildren<BuildableNode>();
         if (bn != null) {
             bn.Init(i, j);
             nodes.Add(bn);

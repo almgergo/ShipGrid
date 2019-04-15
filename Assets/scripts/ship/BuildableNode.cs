@@ -8,6 +8,8 @@ public class BuildableNode : MonoBehaviour {
     public int i;
     public int j;
 
+    public bool hit = false;
+
     public List<GameObject> GetNeighbours() {
         return this.neighbours;
     }
@@ -16,5 +18,15 @@ public class BuildableNode : MonoBehaviour {
         this.neighbours = new List<GameObject>();
         this.i = i;
         this.j = j;
+    }
+
+    public void ChangeColor() {
+        Debug.Log(gameObject.GetComponent<Renderer>());
+        if (this.hit) {
+            gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
+        } else {
+            gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+        }
+        this.hit = !this.hit;
     }
 }
