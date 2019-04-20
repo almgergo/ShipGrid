@@ -10,8 +10,9 @@ public class BuildableNode : MonoBehaviour {
     public bool hit = false;
 
     private List<GameObject> neighbours;
-    private UIController UIController;
-    private ShipTurrets ShipTurrets;
+    private UIController uIController;
+    private ShipTurrets shipTurrets;
+    private EconomyController economyController;
 
     public List<GameObject> GetNeighbours() {
         return this.neighbours;
@@ -21,8 +22,9 @@ public class BuildableNode : MonoBehaviour {
         this.neighbours = new List<GameObject>();
         this.i = i;
         this.j = j;
-        this.UIController = GameObject.FindGameObjectWithTag("UIController").GetComponent<UIController>();
-        this.ShipTurrets = GameObject.FindGameObjectWithTag("Player").GetComponent<ShipTurrets>();
+        this.uIController = GameObject.FindGameObjectWithTag("UIController").GetComponent<UIController>();
+        this.shipTurrets = GameObject.FindGameObjectWithTag("Player").GetComponent<ShipTurrets>();
+        this.economyController = GameObject.FindGameObjectWithTag("GameController").GetComponent<EconomyController>();
     }
 
     public void ChangeColor() {
@@ -34,11 +36,12 @@ public class BuildableNode : MonoBehaviour {
         this.hit = !this.hit;
     }
 
-    public GameObject BuildBuilding() {
-        GameObject newTurret = Instantiate(this.UIController.SelectedBuilding, this.transform);
-        newTurret.transform.SetParent(this.transform);
-        newTurret.name = "Turret_" + gameObject.name;
-        this.ShipTurrets.AddTurret(newTurret.GetComponent<TurretController>());
-        return newTurret;
+    public void BuildBuilding() {
+        if (economyController.PurchaseBuilding(this.uIController.SelectedBuilding)) {
+            GameObject newTurret = Instantiate(this.uIController.SelectedBuilding, this.transform);
+            newTurret.transform.SetParent(this.transform);
+            newTurret.name = "Turret_" + gameObject.name;
+            this.shipTurrets.AddTurret(newTurret.GetComponent<TurretController>());
+        }
     }
 }

@@ -105,8 +105,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DamageProperties:
-    SoftDamage: 1
+    SoftDamage: 4
   EntityProperties:
     MaxHealth: 100
-    Speed: 10
+    Speed: 30
     TurnRate: 1

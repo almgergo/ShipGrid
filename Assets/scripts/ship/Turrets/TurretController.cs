@@ -5,6 +5,8 @@ using UnityEngine;
 public class TurretController : MonoBehaviour {
     public GameObject Projectile;
     public GameObject Nozzle;
+    [SerializeField]
+    public ProjectileModifier projectileModifier;
 
     private GameObject target;
 
@@ -13,7 +15,7 @@ public class TurretController : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         nextFire = Time.time + fireCooldownInSeconds;
-
+        // projectileModifier = new ProjectileModifier(1, 1, 1);
     }
 
     // Update is called once per frame
@@ -37,7 +39,12 @@ public class TurretController : MonoBehaviour {
         GameObject newProjectile = Instantiate(
             Projectile, Nozzle.transform.position, Quaternion.LookRotation(relativePos, Vector3.up)
         );
-        nextFire = Time.time + fireCooldownInSeconds;
+
+        // add projectile modifire to the new projectile
+        ProjectileController controller = newProjectile.GetComponent<ProjectileController>();
+        controller.Init(this.projectileModifier);
+
+        nextFire = Time.time + fireCooldownInSeconds * controller.GetCooldownMultiplier();
 
     }
 

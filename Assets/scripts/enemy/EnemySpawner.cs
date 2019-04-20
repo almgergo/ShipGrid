@@ -1,16 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemySpawner : MonoBehaviour {
+    public Text SpawnCooldownText;
     public GameObject EnemyObject;
+    public float SpawnCooldownReductionCooldown;
     public float SpawnCooldownInSeconds;
     public float SpawnVariance;
 
     private float nextSpawn;
+    private float nextSpeedUp;
     // Start is called before the first frame update
     void Start() {
         nextSpawn = Time.time + SpawnCooldownInSeconds;
+        nextSpeedUp = Time.time + SpawnCooldownReductionCooldown;
     }
 
     // Update is called once per frame
@@ -18,6 +23,13 @@ public class EnemySpawner : MonoBehaviour {
         if (nextSpawn <= Time.time) {
             SpawnEnemy();
         }
+    }
+
+    void FixedUpdate() {
+        if (Time.time >= nextSpeedUp) {
+            this.ReduceSpawnCooldown();
+        }
+        SpawnCooldownText.text = "Spawn interval: " + SpawnCooldownInSeconds;
     }
 
     private void SpawnEnemy() {
@@ -29,6 +41,11 @@ public class EnemySpawner : MonoBehaviour {
 
         GameObject newEnemy = Instantiate(EnemyObject, transform.position + displacement, Quaternion.identity);
         newEnemy.transform.SetParent(transform);
-        nextSpawn = Time.time + SpawnCooldownInSeconds * 100000;
+        nextSpawn = Time.time + SpawnCooldownInSeconds;
+    }
+
+    private void ReduceSpawnCooldown() {
+        SpawnCooldownInSeconds *= 0.75f;
+        nextSpeedUp = Time.time + SpawnCooldownReductionCooldown;
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1970423228250022604}
   - component: {fileID: 5312254751323271498}
   - component: {fileID: 6398238138110706040}
-  - component: {fileID: 2761132157808136528}
+  - component: {fileID: 1032432826686725929}
   m_Layer: 0
   m_Name: Basic Turret
   m_TagString: Untagged
@@ -93,7 +93,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2761132157808136528
+--- !u!114 &1032432826686725929
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,13 +102,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7705804333320425396}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3abb89fb1526d74d8f40709a247c776, type: 3}
+  m_Script: {fileID: 11500000, guid: 06e40b575899eb44ea456e7cc7e4ffc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Projectile: {fileID: 7098602037665546795, guid: 6d93974dc76af154eb8fddf61fbce7d5,
-    type: 3}
-  Nozzle: {fileID: 8513244422162671687}
-  fireCooldownInSeconds: 0.2
+  GoldCost: 50
 --- !u!1 &8513244422162671687
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,6 +148,7 @@ GameObject:
   - component: {fileID: 3021972202467576838}
   - component: {fileID: 1913864308194415532}
   - component: {fileID: 1621280773024502768}
+  - component: {fileID: 7668172334061704444}
   m_Layer: 0
   m_Name: Nozzle
   m_TagString: Untagged
@@ -232,3 +230,23 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &7668172334061704444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8942029244013976976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3abb89fb1526d74d8f40709a247c776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Projectile: {fileID: 7098602037665546795, guid: 6d93974dc76af154eb8fddf61fbce7d5,
+    type: 3}
+  Nozzle: {fileID: 8513244422162671687}
+  projectileModifier:
+    DamageMultiplier: 1
+    SpeedMultiplier: 1
+    CooldownMultiplier: 1
+  fireCooldownInSeconds: 0.2

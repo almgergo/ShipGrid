@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EntityProperties:
+    Bounty: 25
     MaxHealth: 20
     Speed: 1
     TurnRate: 1
