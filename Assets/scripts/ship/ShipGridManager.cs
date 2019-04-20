@@ -32,16 +32,6 @@ public class ShipGridManager : MonoBehaviour {
         }
 
         this.FindNeighbours();
-        foreach (BuildableNode n in nodes) {
-            n.ChangeColor();
-            // foreach (GameObject neighbour in n.GetNeighbours()) {
-            //     Vector3 direction = neighbour.transform.position - n.transform.position;
-
-            //     Debug.DrawRay(n.gameObject.transform.position,
-            //         direction,
-            //         Color.blue, 40);
-            // }
-        }
     }
 
     private void InitBuildableNode(int i, int j, GameObject newBuildable) {
@@ -76,12 +66,8 @@ public class ShipGridManager : MonoBehaviour {
 
     private void ScanForNeighbour(BuildableNode node, Vector3 direction) {
         RaycastHit hit;
-        // Does the ray intersect any objects excluding the player layer
         if (Physics.Raycast(node.gameObject.transform.position, direction, out hit, Mathf.Infinity, LayerMask.GetMask("Buildable"))) {
-            // Debug.DrawRay(node.gameObject.transform.position, direction * hit.distance, Color.white, 2);
             node.GetNeighbours().Add(hit.transform.gameObject);
-        } else {
-            // Debug.DrawRay(node.gameObject.transform.position, direction * 1000, Color.black, 2);
         }
     }
 }
